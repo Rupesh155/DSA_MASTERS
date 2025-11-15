@@ -1,4 +1,4 @@
-// PUSH FRONT IN LINKED LIST / PUSH BACK IN LINKED LIST / PRINT LINKED LIST ... by Surya Shrivastava
+// ITERATIVE SEARCH ON A LINKED LIST ... by Surya Shrivastava
 #include <iostream>
 using namespace std;
 class Node {
@@ -45,6 +45,15 @@ class List {
         }
         cout << "NULL\n";
     }
+    void search(int val) {
+        Node* temp = head;
+        int count = 0;
+        while(temp -> data != val) {
+            temp = temp -> next;
+            count ++;
+        }
+        cout << val << " is found at the position " << count << ". \n";
+    }
 };
 int main() {
     List ll;
@@ -57,5 +66,6 @@ int main() {
     ll.push_back(5);
     ll.push_back(6);
     ll.printList(); // 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> NULL
+    ll.search(8);
     return 0;
 }
