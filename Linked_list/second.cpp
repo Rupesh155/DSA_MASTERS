@@ -1,4 +1,4 @@
-// PUSH FRONT IN LINKED LIST / PUSH BACK IN LINKED LIST / PRINT LINKED LIST ... by Surya Shrivastava
+// INSERT IN MIDDLE OF A LINKED LIST
 #include <iostream>
 using namespace std;
 class Node {
@@ -45,6 +45,19 @@ class List {
         }
         cout << "NULL\n";
     }
+    void insert(int val, int pos) {
+        Node* newNode = new Node(val);
+        Node* temp = head;
+
+        for(int i=0; i<pos-1; i++) {
+            if(temp == NULL) {
+                cout << "POSITION IS INVALID ... " << "\n";
+            }
+            temp = temp -> next;
+        }
+        newNode -> next = temp -> next;
+        temp -> next = newNode;
+    }
 };
 int main() {
     List ll;
@@ -57,5 +70,7 @@ int main() {
     ll.push_back(5);
     ll.push_back(6);
     ll.printList(); // 1 -> 2 -> 3 -> 4 -> 5 -> NULL
+    ll.insert(100, 2); 
+    ll.printList(); // 1 -> 2 -> 100 -> 3 -> 4 -> 5 -> NULL
     return 0;
 }
