@@ -1,4 +1,4 @@
-// RECURSIVE SEARCH ON A LINKED LIST ... by Surya Shrivastava
+// FIND AND REMOVE Nth NODE FROM END ... by Surya Shrivastava
 #include <iostream>
 using namespace std;
 class Node {
@@ -18,6 +18,7 @@ class List {
         head = NULL;
         tail = NULL;
     }
+
     void push_front(int val) {
         Node* newNode = new Node(val);
         if(head == NULL) {
@@ -28,6 +29,7 @@ class List {
             head = newNode;
         }
     }
+
     void push_back(int val) {
         Node* newNode = new Node(val);
         if(head == NULL) {
@@ -37,6 +39,7 @@ class List {
             tail = newNode;
         }
     }
+
     void printList() {
         Node* temp = head;
         while(temp != NULL) {
@@ -45,24 +48,29 @@ class List {
         }
         cout << "NULL\n";
     }
-    int helper(Node* temp, int val){
-        if(temp == NULL) {
-            return -1;
+    int getSize() {
+        int count = 0;
+        Node* temp = head;
+        while(temp!=NULL) {
+            temp = temp -> next;
+            count++;
         }
-        if(temp->data == val) {
-            return 0;
-        }
-        int idx = helper(temp->next, val);
-        if(idx == -1) {
-            return -1;
-        }else{
-             return idx + 1;
-        }
+        return count;
     }
-    int recursive_search(int val) {
-        return helper(head, val);
+    void remove(int n) {
+    int size = getSize();
+    int i = 1;
+    Node* prev = head;
+    while(i < size-n) {
+        prev = prev -> next;
+        i++;
     }
+    cout << "going to delete : " << prev -> next -> data << "\n";
+    prev -> next = prev -> next -> next;
+    }
+
 };
+
 int main() {
     List ll;
 
@@ -74,7 +82,7 @@ int main() {
     ll.push_back(5);
     ll.push_back(6);
     ll.printList(); // 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> NULL
-    int ans = ll.recursive_search(6);
-    cout << "is at the position : " << ans << "\n";
+    ll.remove(3);
+    ll.printList(); // 1 -> 2 -> 3 -> 5 -> 6 -> NULL
     return 0;
 }
