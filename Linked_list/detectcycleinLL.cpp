@@ -1,4 +1,4 @@
-// PRINT LINKED LIST ... by Surya Shrivastava
+// DETECT CYCLE/LOOP IN A LINKED LIST ... by Surya Shrivastava
 #include <iostream>
 using namespace std;
 class Node {
